@@ -18,3 +18,12 @@ for i in rutas:
 
     kernel = np.ones((2, 2), np.uint8)
     erodeImage = cv2.erode(binFrame, kernel, iterations = 1)
+    if (porcentaje_cambio > 0.1):
+      cv2.imshow('frame diff ',erodeImage)
+      if cv2.waitKey(1) & 0xFF == ord('q'):
+          break
+
+    prevImage = currentImage.copy()
+    success,currentImage = vidcap.read()
+
+  idRutas +=1
