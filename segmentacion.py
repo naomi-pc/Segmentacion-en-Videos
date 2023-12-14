@@ -10,7 +10,14 @@ for i in rutas:
     prevImage = currentImage
     print(idRutas)
     count = 0
+while (success):
+    currentGray = cv2.cvtColor(currentImage, cv2.COLOR_BGR2GRAY)
+    previousGray = cv2.cvtColor(prevImage, cv2.COLOR_BGR2GRAY)
 
+    frame_diff = cv2.absdiff(currentGray,previousGray)
+    umbral, binFrame = cv2.threshold(frame_diff, 20, 155, cv2.THRESH_BINARY)
+
+    pixeles_cambiados = cv2.countNonZero(binFrame)
     total_pixeles = frame_diff.size
     porcentaje_cambio = (pixeles_cambiados / total_pixeles) * 100
 
